@@ -5,6 +5,7 @@ name := "registers-scala-utils"
 lazy val Versions = new {
   val play = "2.6.0-M4"
   val scala = "2.11.8"
+  val scalatest = "3.0.1"
 }
 
 val sharedSettings: Seq[Def.Setting[_]] = Seq(
@@ -27,7 +28,8 @@ lazy val play = (project in file("util-play"))
   .settings(
     moduleName := "util-play",
     libraryDependencies ++= Seq(
-      "com.typesafe.play" % "play_2.11" % "2.6.7"
+      "com.typesafe.play"       %             "play_2.11"         %         "2.6.7",
+      "org.scalatest"           %%            "scalatest"         %         Versions.scalatest % Test
     ),
     assemblyJarName in assembly := "util-play.jar",
     assemblyMergeStrategy in assembly := {
@@ -40,6 +42,9 @@ lazy val general = (project in file("util-general"))
   .settings(sharedSettings: _*)
   .settings(
     moduleName := "util-general",
+    libraryDependencies ++= Seq(
+      "org.scalatest"           %%            "scalatest"         %         Versions.scalatest % Test
+    ),
     assemblyJarName in assembly := "util-general.jar",
     assemblyMergeStrategy in assembly := {
       case PathList("META-INF", xs @ _*) => MergeStrategy.discard
