@@ -21,17 +21,11 @@ trait ControllerUtils {
     )
   }
 
-  /**
-    * On a result, use .future, e.g. Ok().future
-    * Method source: https://github.com/outworkers/util/blob/develop/util-play/src/main/scala/com/outworkers/util/play/package.scala#L98
-    */
-  implicit class ResultAugmenter(val res: Result) {
-    def future: Future[Result] = Future.successful(res)
+  def tryAsResponse(parseToJson: Try[JsValue]): Result = parseToJson match {
+    case Success(s) => Ok(s)
+    case Failure(ex) =>
+      logger.error("Failed to parse instance to expected json format", ex)
+      BadRequest(errAsJson(BAD_REQUEST, "bad_request", s"Could not perform action with exception $ex"))
   }
-
-  /**
-    * Convert a Java Optional to a Scala Option
-    */
-  protected def toOption[X](o: Optional[X]) = if (o.isPresent) Some(o.get) else None
 }
 
