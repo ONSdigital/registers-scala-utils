@@ -28,8 +28,10 @@ lazy val play = (project in file("util-play"))
   .settings(
     moduleName := "util-play",
     libraryDependencies ++= Seq(
-      "com.typesafe.play"       %             "play_2.11"         %         "2.6.7",
-      "org.scalatest"           %%            "scalatest"         %         Versions.scalatest % Test
+      "com.typesafe.play"           %        "play_2.11"         %         "2.6.7",
+      "ch.qos.logback"              %        "logback-classic"   %         "1.2.3",
+      "com.typesafe.scala-logging"  %%       "scala-logging"     %         "3.7.2",
+      "org.scalatest"               %%       "scalatest"         %         Versions.scalatest % Test
     ),
     assemblyJarName in assembly := "util-play.jar",
     assemblyMergeStrategy in assembly := {
@@ -51,3 +53,6 @@ lazy val general = (project in file("util-general"))
       case x => MergeStrategy.first
     }
   )
+
+libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3"
+libraryDependencies += "com.typesafe.scala-logging" %% "scala-logging" % "3.7.2"
