@@ -1,14 +1,15 @@
 package uk.gov.ons.util.play
 
-import play.api.libs.json.{ JsObject, Json }
-import play.api.mvc.Result
+import com.typesafe.scalalogging.LazyLogging
+import play.api.libs.json.{JsObject, JsValue, Json}
+import play.api.mvc.{Controller, Result, Results}
 
-import scala.concurrent.Future
+import scala.util.{Failure, Success, Try}
 
 /**
   * Created by coolit on 16/11/2017.
   */
-trait ControllerUtils {
+trait ControllerUtils extends Controller with LazyLogging {
 
   /**
     * Pass parameters to form a JSON response for a request
@@ -22,10 +23,10 @@ trait ControllerUtils {
   }
 
   def tryAsResponse(parseToJson: Try[JsValue]): Result = parseToJson match {
-    case Success(s) => Ok(s)
+    case Success(s) => Results.Ok(s)
     case Failure(ex) =>
       logger.error("Failed to parse instance to expected json format", ex)
-      BadRequest(errAsJson(BAD_REQUEST, "bad_request", s"Could not perform action with exception $ex"))
+      Results.BadRequest(errAsJson(BAD_REQUEST, "bad_request", s"Could not perform action with exception $ex"))
   }
 }
 
