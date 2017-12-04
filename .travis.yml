@@ -14,7 +14,13 @@ cache:
     - $HOME/.sbt
 
 script:
-  - sbt ++$TRAVIS_SCALA_VERSION test
+  - sbt ++$TRAVIS_SCALA_VERSION clean coverage test
+
+after_success:
+  - sbt coverageReport
+  - sbt coverageAggregate
+  - sbt codacyCoverage
+  - sbt coveralls
 
 before_cache:
   # Cleanup the cached directories to avoid unnecessary cache updates

@@ -1,6 +1,6 @@
 # registers-scala-utils
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE) [![Build Status](https://travis-ci.org/ONSdigital/registers-scala-utils.svg?branch=develop)](https://travis-ci.org/ONSdigital/registers-scala-utils)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](./LICENSE) [![Build Status](https://travis-ci.org/ONSdigital/registers-scala-utils.svg?branch=develop)](https://travis-ci.org/ONSdigital/registers-scala-utils) [![Coverage Status](https://coveralls.io/repos/github/ONSdigital/registers-scala-utils/badge.svg?branch=develop)](https://coveralls.io/github/ONSdigital/registers-scala-utils?branch=develop)
 
 Reusable library for Scala utilities for the Registers applications.
 
