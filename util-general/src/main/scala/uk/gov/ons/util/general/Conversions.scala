@@ -14,4 +14,3 @@ object Conversions {
   def toJavaOptional[A](o: Option[A]): Optional[A] =
     o match { case Some(a) => Optional.ofNullable(a); case _ => Optional.empty[A] }
 }
-
